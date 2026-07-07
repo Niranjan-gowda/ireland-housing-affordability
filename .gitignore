@@ -1,0 +1,20 @@
+# Full pulls from the live CSO API (regenerate with etl/extract_cso.py)
+data/processed/rppi_monthly.csv
+data/processed/rents_quarterly.csv
+
+# SQLite build artifact (regenerate with etl/load_sqlite.py)
+data/processed/*.db
+data/processed/*.db-journal
+
+# Power BI binary (rebuild from powerbi/POWER_BI_GUIDE.md)
+*.pbix
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS
+.DS_Store
+_perm_test.tmp

@@ -1,0 +1,121 @@
+period_date,frequency,geography,property_type,rppi_index_2015base,source
+2005-01-01,Monthly,National,All residential properties,124.9,CSO HPM09
+2005-02-01,Monthly,National,All residential properties,125.9,CSO HPM09
+2005-03-01,Monthly,National,All residential properties,126.6,CSO HPM09
+2005-04-01,Monthly,National,All residential properties,127.5,CSO HPM09
+2005-05-01,Monthly,National,All residential properties,128.4,CSO HPM09
+2005-06-01,Monthly,National,All residential properties,129.5,CSO HPM09
+2005-07-01,Monthly,National,All residential properties,131.6,CSO HPM09
+2005-08-01,Monthly,National,All residential properties,133.8,CSO HPM09
+2005-09-01,Monthly,National,All residential properties,135.2,CSO HPM09
+2005-10-01,Monthly,National,All residential properties,138.1,CSO HPM09
+2005-11-01,Monthly,National,All residential properties,139.3,CSO HPM09
+2005-12-01,Monthly,National,All residential properties,140.7,CSO HPM09
+2006-01-01,Monthly,National,All residential properties,141.4,CSO HPM09
+2006-02-01,Monthly,National,All residential properties,141.7,CSO HPM09
+2006-03-01,Monthly,National,All residential properties,142.5,CSO HPM09
+2006-04-01,Monthly,National,All residential properties,144.6,CSO HPM09
+2006-05-01,Monthly,National,All residential properties,147.6,CSO HPM09
+2006-06-01,Monthly,National,All residential properties,150.3,CSO HPM09
+2006-07-01,Monthly,National,All residential properties,153.7,CSO HPM09
+2006-08-01,Monthly,National,All residential properties,157.1,CSO HPM09
+2006-09-01,Monthly,National,All residential properties,158.4,CSO HPM09
+2006-10-01,Monthly,National,All residential properties,159.4,CSO HPM09
+2006-11-01,Monthly,National,All residential properties,159.4,CSO HPM09
+2006-12-01,Monthly,National,All residential properties,160.6,CSO HPM09
+2005-01-01,Monthly,National,Houses,120.7,CSO HPM09
+2005-02-01,Monthly,National,Houses,121.8,CSO HPM09
+2005-03-01,Monthly,National,Houses,122.7,CSO HPM09
+2005-04-01,Monthly,National,Houses,123.7,CSO HPM09
+2005-05-01,Monthly,National,Houses,124.6,CSO HPM09
+2005-06-01,Monthly,National,Houses,126.0,CSO HPM09
+2005-07-01,Monthly,National,Houses,128.2,CSO HPM09
+2005-08-01,Monthly,National,Houses,130.2,CSO HPM09
+2005-09-01,Monthly,National,Houses,131.3,CSO HPM09
+2005-10-01,Monthly,National,Houses,134.1,CSO HPM09
+2005-11-01,Monthly,National,Houses,135.3,CSO HPM09
+2005-12-01,Monthly,National,Houses,136.5,CSO HPM09
+2006-01-01,Monthly,National,Houses,137.3,CSO HPM09
+2006-02-01,Monthly,National,Houses,137.7,CSO HPM09
+2006-03-01,Monthly,National,Houses,138.5,CSO HPM09
+2006-04-01,Monthly,National,Houses,140.5,CSO HPM09
+2006-05-01,Monthly,National,Houses,143.4,CSO HPM09
+2006-06-01,Monthly,National,Houses,146.2,CSO HPM09
+2006-07-01,Monthly,National,Houses,149.7,CSO HPM09
+2006-08-01,Monthly,National,Houses,153.0,CSO HPM09
+2006-09-01,Monthly,National,Houses,154.1,CSO HPM09
+2006-10-01,Monthly,National,Houses,155.1,CSO HPM09
+2006-11-01,Monthly,National,Houses,155.2,CSO HPM09
+2006-12-01,Monthly,National,Houses,156.5,CSO HPM09
+2005-01-01,Monthly,National,Apartments,153.4,CSO HPM09
+2005-02-01,Monthly,National,Apartments,153.8,CSO HPM09
+2005-03-01,Monthly,National,Apartments,153.7,CSO HPM09
+2005-04-01,Monthly,National,Apartments,153.5,CSO HPM09
+2005-05-01,Monthly,National,Apartments,153.7,CSO HPM09
+2005-06-01,Monthly,National,Apartments,153.2,CSO HPM09
+2005-07-01,Monthly,National,Apartments,153.6,CSO HPM09
+2005-08-01,Monthly,National,Apartments,155.8,CSO HPM09
+2005-09-01,Monthly,National,Apartments,158.3,CSO HPM09
+2005-10-01,Monthly,National,Apartments,161.4,CSO HPM09
+2005-11-01,Monthly,National,Apartments,163.4,CSO HPM09
+2005-12-01,Monthly,National,Apartments,166.4,CSO HPM09
+2006-01-01,Monthly,National,Apartments,167.8,CSO HPM09
+2006-02-01,Monthly,National,Apartments,169.0,CSO HPM09
+2006-03-01,Monthly,National,Apartments,170.1,CSO HPM09
+2006-04-01,Monthly,National,Apartments,172.7,CSO HPM09
+2006-05-01,Monthly,National,Apartments,175.0,CSO HPM09
+2006-06-01,Monthly,National,Apartments,176.9,CSO HPM09
+2006-07-01,Monthly,National,Apartments,179.1,CSO HPM09
+2006-08-01,Monthly,National,Apartments,182.5,CSO HPM09
+2006-09-01,Monthly,National,Apartments,185.5,CSO HPM09
+2006-10-01,Monthly,National,Apartments,186.9,CSO HPM09
+2006-11-01,Monthly,National,Apartments,187.8,CSO HPM09
+2006-12-01,Monthly,National,Apartments,189.0,CSO HPM09
+2005-01-01,Monthly,Dublin,All residential properties,118.5,CSO HPM09
+2005-02-01,Monthly,Dublin,All residential properties,121.0,CSO HPM09
+2005-03-01,Monthly,Dublin,All residential properties,121.9,CSO HPM09
+2005-04-01,Monthly,Dublin,All residential properties,122.7,CSO HPM09
+2005-05-01,Monthly,Dublin,All residential properties,123.7,CSO HPM09
+2005-06-01,Monthly,Dublin,All residential properties,123.8,CSO HPM09
+2005-07-01,Monthly,Dublin,All residential properties,125.3,CSO HPM09
+2005-08-01,Monthly,Dublin,All residential properties,127.7,CSO HPM09
+2005-09-01,Monthly,Dublin,All residential properties,130.0,CSO HPM09
+2005-10-01,Monthly,Dublin,All residential properties,133.7,CSO HPM09
+2005-11-01,Monthly,Dublin,All residential properties,135.4,CSO HPM09
+2005-12-01,Monthly,Dublin,All residential properties,136.2,CSO HPM09
+2006-01-01,Monthly,Dublin,All residential properties,136.8,CSO HPM09
+2006-02-01,Monthly,Dublin,All residential properties,137.9,CSO HPM09
+2006-03-01,Monthly,Dublin,All residential properties,138.7,CSO HPM09
+2006-04-01,Monthly,Dublin,All residential properties,141.3,CSO HPM09
+2006-05-01,Monthly,Dublin,All residential properties,145.0,CSO HPM09
+2006-06-01,Monthly,Dublin,All residential properties,148.7,CSO HPM09
+2006-07-01,Monthly,Dublin,All residential properties,153.4,CSO HPM09
+2006-08-01,Monthly,Dublin,All residential properties,157.9,CSO HPM09
+2006-09-01,Monthly,Dublin,All residential properties,158.2,CSO HPM09
+2006-10-01,Monthly,Dublin,All residential properties,159.3,CSO HPM09
+2006-11-01,Monthly,Dublin,All residential properties,158.7,CSO HPM09
+2006-12-01,Monthly,Dublin,All residential properties,158.9,CSO HPM09
+2005-01-01,Monthly,National excluding Dublin,All residential properties,142.1,CSO HPM09
+2005-02-01,Monthly,National excluding Dublin,All residential properties,142.2,CSO HPM09
+2005-03-01,Monthly,National excluding Dublin,All residential properties,142.9,CSO HPM09
+2005-04-01,Monthly,National excluding Dublin,All residential properties,143.8,CSO HPM09
+2005-05-01,Monthly,National excluding Dublin,All residential properties,144.8,CSO HPM09
+2005-06-01,Monthly,National excluding Dublin,All residential properties,146.7,CSO HPM09
+2005-07-01,Monthly,National excluding Dublin,All residential properties,149.3,CSO HPM09
+2005-08-01,Monthly,National excluding Dublin,All residential properties,151.6,CSO HPM09
+2005-09-01,Monthly,National excluding Dublin,All residential properties,152.7,CSO HPM09
+2005-10-01,Monthly,National excluding Dublin,All residential properties,155.3,CSO HPM09
+2005-11-01,Monthly,National excluding Dublin,All residential properties,156.3,CSO HPM09
+2005-12-01,Monthly,National excluding Dublin,All residential properties,158.2,CSO HPM09
+2006-01-01,Monthly,National excluding Dublin,All residential properties,159.0,CSO HPM09
+2006-02-01,Monthly,National excluding Dublin,All residential properties,158.9,CSO HPM09
+2006-03-01,Monthly,National excluding Dublin,All residential properties,159.7,CSO HPM09
+2006-04-01,Monthly,National excluding Dublin,All residential properties,161.8,CSO HPM09
+2006-05-01,Monthly,National excluding Dublin,All residential properties,164.6,CSO HPM09
+2006-06-01,Monthly,National excluding Dublin,All residential properties,166.9,CSO HPM09
+2006-07-01,Monthly,National excluding Dublin,All residential properties,169.7,CSO HPM09
+2006-08-01,Monthly,National excluding Dublin,All residential properties,172.8,CSO HPM09
+2006-09-01,Monthly,National excluding Dublin,All residential properties,174.9,CSO HPM09
+2006-10-01,Monthly,National excluding Dublin,All residential properties,176.0,CSO HPM09
+2006-11-01,Monthly,National excluding Dublin,All residential properties,176.3,CSO HPM09
+2006-12-01,Monthly,National excluding Dublin,All residential properties,178.4,CSO HPM09
