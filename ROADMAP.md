@@ -12,7 +12,7 @@ commit is reviewable. Checked items are done; the rest are the planned cadence.
 - [x] Analysis queries: YoY, Dublin-vs-rest, county rent ranking
 - [x] Power BI guide (model + DAX + report spec)
 - [ ] Run `make full` on a local machine; commit note confirming full pull
-- [ ] Add data-quality checks (row counts, null rate, index continuity)
+- [x] Add data-quality checks (row counts, null rate, index continuity)
 
 ## Week 2 — analysis depth
 - [ ] Query: real vs nominal — deflate rent with CPI
@@ -33,3 +33,6 @@ commit is reviewable. Checked items are done; the rest are the planned cadence.
 - Eircode-level price map (HPM04/HPM08)
 - Mortgage affordability calculator (rate + LTI what-if)
 - Compare RPPI against average earnings (CSO earnings series)
+
+## Build log
+- 2026-07-13 — Added `etl/data_quality_checks.py`, a stdlib-only DQ gate (row counts, null rate, referential integrity, measure sanity, RPPI month-gap continuity, grain uniqueness). Verified against the sample DB: 30 checks pass, exit 0; confirmed it returns exit 1 on injected orphan rows.
