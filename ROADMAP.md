@@ -17,9 +17,9 @@ commit is reviewable. Checked items are done; the rest are the planned cadence.
 ## Week 2 — analysis depth
 - [ ] Query: real vs nominal — deflate rent with CPI
 - [ ] Query: price-to-rent ratio by region over time
-- [ ] Query: rolling 12-month RPPI and rent growth
+- [x] Query: rolling 12-month RPPI and rent growth
 - [ ] Query: rank counties by 1yr / 5yr rent growth
-- [ ] Add a `views/` layer with reusable SQL views
+- [x] Add a `views/` layer with reusable SQL views
 - [ ] Notebook: exploratory charts (matplotlib) exported to `docs/`
 
 ## Week 3 — polish & showcase
@@ -35,4 +35,6 @@ commit is reviewable. Checked items are done; the rest are the planned cadence.
 - Compare RPPI against average earnings (CSO earnings series)
 
 ## Build log
-- 2026-07-13 — Added `etl/data_quality_checks.py`, a stdlib-only DQ gate (row counts, null rate, referential integrity, measure sanity, RPPI month-gap continuity, grain uniqueness). Verified against the sample DB: 30 checks pass, exit 0; confirmed it returns exit 1 on injected orphan rows.
+- 2026-07-13 — Added `etl/data_quality_checks.py`, a stdlib-only DQ gate (row counts, null rate, referential integrity, measure sanity, RPPI month-gap continuity, grain uniqueness). Verified against the sample DB: 29 checks pass, exit 0; confirmed it returns exit 1 on injected orphan rows.
+- 2026-07-20 — Added `sql/views/01_create_views.sql`: reusable views layer (v_rppi, v_rppi_yoy, v_rent, v_rent_yoy) with integer-arithmetic YoY self-joins. Verified on a fresh sample build: idempotent, 120/120/9/9 rows, YoY figures hand-checked. (Took the views item out of order: `make full` needs a local run, and the CPI deflator item needs real CPI data — CSO API unreachable from this sandbox, and hardcoding remembered CPI values would be fabrication.)
+- 2026-07-20 — Added `sql/analysis/04_rolling_12m_growth.sql`: rolling 12-month RPPI average + annual growth of the smoothed series (window functions, partial-window guard), plus the quarterly rolling-4 rent mirror that populates after `make full`. Verified on a fresh sample build: 72 RPPI rows, rolling avg from month 12, growth for Dec 2006 (14.9% national) hand-checked against a direct recomputation. (CPI deflator item still blocked — CSO API unreachable from sandbox.)
