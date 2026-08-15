@@ -1,5 +1,11 @@
 # Ireland Housing Affordability — SQL + Power BI
 
+![SQL](https://img.shields.io/badge/SQL-SQLite%20%7C%20Postgres-003B57?logo=sqlite&logoColor=white)
+![Power BI](https://img.shields.io/badge/Power%20BI-model%20%2B%20DAX-F2C811?logo=powerbi&logoColor=black)
+![Python ETL](https://img.shields.io/badge/ETL-Python%20stdlib-3776AB?logo=python&logoColor=white)
+![Data](https://img.shields.io/badge/data-CSO%20%2B%20RTB%20open%20data-2E7D32)
+![Build](https://img.shields.io/badge/build-daily%20increments-blue)
+
 An end-to-end analytics project on Irish housing costs, built around the two
 skills most requested in Dublin Business Analyst / Data Analyst job ads:
 **SQL** and **Power BI**. It combines house-price and rent data into a single
@@ -39,7 +45,8 @@ data/sample + data/seed  ──────────────────�
 
 Star schema: `fact_rppi` (month × geography × property type) and `fact_rent`
 (quarter × county) share conformed dimensions `dim_date`, `dim_geography`,
-`dim_property_type`, so one slicer filters both price and rent visuals. See
+`dim_property_type`, so one slicer filters both price and rent visuals. See the
+[entity-relationship diagram](docs/ERD.md) and
 [docs/DATA_DICTIONARY.md](docs/DATA_DICTIONARY.md).
 
 ## Quick start
@@ -70,7 +77,7 @@ sql/analysis/   analytical queries (YoY, Dublin gap, rent ranking)
 data/sample/    verified RPPI sample (2005-2006)
 data/seed/      verified RTB rents (2025Q3)
 powerbi/        POWER_BI_GUIDE.md — model, DAX, report spec
-docs/           data dictionary
+docs/           data dictionary, ERD, exploratory charts
 ROADMAP.md      daily build log
 ```
 
