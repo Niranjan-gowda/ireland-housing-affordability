@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ireland Housing Affordability — SQL + Power BI</title>
+<meta name="description" content="An end-to-end SQL + Power BI analysis of Irish house-price and rent data (CSO RPPI + RTB rents), from open-data ETL through a dimensional model to affordability findings.">
+<style>
+  :root{
+    --ink:#12203a; --muted:#5a6b85; --line:#dfe5ee; --bg:#f6f8fb;
+    --card:#ffffff; --accent:#2E7D32; --accent2:#003B57; --dublin:#c0392b;
+    --shadow:0 1px 2px rgba(18,32,58,.06),0 8px 24px rgba(18,32,58,.06);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+  a{color:var(--accent2)}
+  .wrap{max-width:960px;margin:0 auto;padding:0 20px}
+  header.hero{background:linear-gradient(160deg,#0b2033 0%,#123a57 60%,#1c5b46 100%);color:#eaf1f7;padding:56px 0 44px}
+  header.hero .wrap{max-width:960px}
+  .kicker{letter-spacing:.14em;text-transform:uppercase;font-size:12px;color:#9fc7b4;margin:0 0 10px}
+  h1{font-size:34px;line-height:1.15;margin:0 0 12px;font-weight:750}
+  .sub{font-size:18px;color:#c7d6e2;max-width:680px;margin:0}
+  .badges{margin:22px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+  .badge{font-size:12px;font-weight:600;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.10);
+         border:1px solid rgba(255,255,255,.18);color:#eaf1f7}
+  .cta{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px}
+  .btn{display:inline-block;padding:10px 16px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none}
+  .btn.primary{background:#2E7D32;color:#fff}
+  .btn.ghost{background:rgba(255,255,255,.08);color:#eaf1f7;border:1px solid rgba(255,255,255,.22)}
+  main{padding:40px 0 20px}
+  section{margin:0 0 40px}
+  h2{font-size:22px;margin:0 0 6px}
+  .lead{color:var(--muted);margin:0 0 18px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:720px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:var(--shadow)}
+  .stat{font-size:28px;font-weight:750;color:var(--accent)}
+  .stat.dublin{color:var(--dublin)}
+  .card p{margin:6px 0 0;color:var(--muted);font-size:14px}
+  .tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+  .tab{border:1px solid var(--line);background:#fff;color:var(--ink);padding:8px 14px;border-radius:999px;
+       font-size:14px;font-weight:600;cursor:pointer}
+  .tab[aria-selected="true"]{background:var(--accent2);color:#fff;border-color:var(--accent2)}
+  .panel{display:none;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;box-shadow:var(--shadow)}
+  .panel[data-active="true"]{display:block}
+  .panel img{width:100%;height:auto;border-radius:8px;border:1px solid var(--line);background:#fff}
+  .panel .cap{color:var(--muted);font-size:14px;margin:12px 2px 0}
+  .flow{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;box-shadow:var(--shadow);
+        overflow-x:auto}
+  .flow pre{margin:0;font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#26374f}
+  ul.clean{margin:0;padding-left:18px}
+  ul.clean li{margin:6px 0}
+  footer{border-top:1px solid var(--line);padding:24px 0 48px;color:var(--muted);font-size:13px}
+  .note{font-size:13px;color:var(--muted);background:#eef3f9;border:1px solid var(--line);
+        border-radius:10px;padding:12px 14px;margin-top:16px}
+  code{background:#eef3f9;border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:13px}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">SQL · Power BI · Python ETL</p>
+    <h1>Ireland Housing Affordability</h1>
+    <p class="sub">An end-to-end analytics project on Irish housing costs — combining the CSO
+      Residential Property Price Index with RTB standardised rents into a single affordability
+      story, from open-data extraction through a dimensional model to a Power BI dashboard.</p>
+    <div class="badges">
+      <span class="badge">Star schema</span>
+      <span class="badge">Window functions</span>
+      <span class="badge">DAX + what-if</span>
+      <span class="badge">stdlib-only ETL</span>
+      <span class="badge">CSO + RTB open data</span>
+    </div>
+    <div class="cta">
+      <a class="btn primary" href="https://github.com/Niranjan-gowda/ireland-housing-affordability">View on GitHub</a>
+      <a class="btn ghost" href="#charts">See the charts</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="question">
+    <h2>The question</h2>
+    <p class="lead">How affordable is Irish housing, and how does it vary by region and county?</p>
+    <p>The project tracks the residential property price index over time — boom, crash, recovery —
+      alongside standardised rents by county, and derives affordability signals such as year-on-year
+      growth, the Dublin premium, and price-to-rent ratios. Small <strong>verified</strong> data
+      extracts are committed so the repo runs immediately; the ETL pulls the full current series from
+      the live CSO API with <code>make full</code>.</p>
+  </section>
+
+  <section id="findings">
+    <h2>Sample findings</h2>
+    <p class="lead">From the committed sample data (2005–2006 RPPI · 2025Q3 RTB rents).</p>
+    <div class="grid">
+      <div class="card">
+        <div class="stat dublin">€2,173</div>
+        <p>Average monthly rent in Dublin, 2025Q3 — <strong>+64%</strong> above the €1,325 national
+          average, matching the RTB's own headline.</p>
+      </div>
+      <div class="card">
+        <div class="stat">~14%</div>
+        <p>National house-price growth year-on-year through 2006 — the tail of the Celtic-Tiger boom,
+          before the 2007–08 downturn.</p>
+      </div>
+      <div class="card">
+        <div class="stat">€994</div>
+        <p>Cheapest county to rent (Donegal), followed by Leitrim (€997) and Monaghan (€1,031) —
+          roughly half the Dublin figure.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="charts">
+    <h2>Explore the charts</h2>
+    <p class="lead">Rendered by <code>notebooks/exploratory_charts.py</code> from the star-schema
+      database. Date-agnostic: the sample shows 2005–2006 prices and 2025Q3 rents; after
+      <code>make full</code> the same script renders the full CSO/RTB history.</p>
+
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true"  data-target="p1">Price index</button>
+      <button class="tab" role="tab" aria-selected="false" data-target="p2">YoY by region</button>
+      <button class="tab" role="tab" aria-selected="false" data-target="p3">Rent by county</button>
+    </div>
+
+    <div class="panel" id="p1" data-active="true">
+      <img src="charts/chart_01_rppi_national_by_type.png"
+           alt="National RPPI by property type, 2005–2006">
+      <p class="cap"><strong>National price index by property type.</strong> The RPPI (2015 = 100) for
+        all residential properties, houses, and apartments. On the sample all three climb steeply —
+        the tail end of the Celtic-Tiger boom.</p>
+    </div>
+    <div class="panel" id="p2">
+      <img src="charts/chart_02_rppi_yoy_by_region.png"
+           alt="Year-on-year RPPI growth: National vs Dublin vs rest of country">
+      <p class="cap"><strong>Year-on-year price growth by region.</strong> National vs Dublin vs
+        National-excluding-Dublin. Through 2006 Dublin runs consistently hotter than the national
+        figure, which sits above the rest of the country — Dublin YoY peaks above 23%.</p>
+    </div>
+    <div class="panel" id="p3">
+      <img src="charts/chart_03_rent_by_county.png"
+           alt="Average monthly rent by county, latest quarter">
+      <p class="cap"><strong>Average monthly rent by county.</strong> RTB standardised average monthly
+        rent for the latest available quarter, with the national average marked. On the seed (2025Q3)
+        Dublin is the most expensive at €2,173/month, roughly double the cheapest counties.</p>
+    </div>
+  </section>
+
+  <section id="architecture">
+    <h2>How it fits together</h2>
+    <p class="lead">A conformed-dimension star schema, so one slicer filters both price and rent visuals.</p>
+    <div class="flow">
+<pre>CSO PxStat API ──▶ etl/extract_cso.py ──▶ data/processed/*.csv
+                                              │
+data/sample + data/seed  ─────────────────────┤
+                                              ▼
+                        etl/load_sqlite.py ──▶ affordability.db (star schema)
+                                              ▼
+                        sql/analysis/*.sql   +   Power BI</pre>
+    </div>
+    <div class="note">
+      <strong>Model.</strong> <code>fact_rppi</code> (month × geography × property type) and
+      <code>fact_rent</code> (quarter × county) share <code>dim_date</code>, <code>dim_geography</code>,
+      and <code>dim_property_type</code>. See the
+      <a href="ERD.md">entity-relationship diagram</a> and
+      <a href="DATA_DICTIONARY.md">data dictionary</a>.
+    </div>
+  </section>
+
+  <section id="stack">
+    <h2>What's in the repo</h2>
+    <ul class="clean">
+      <li><strong>SQL</strong> — star-schema DDL, a reusable views layer, and analysis queries:
+        YoY growth, Dublin-vs-rest, county rent ranking, rolling 12-month growth, price-to-rent ratio,
+        and county rent-growth ranking (window functions, self-joins, CTEs).</li>
+      <li><strong>Python ETL</strong> — <code>extract_cso.py</code> (JSON-stat API pull) and
+        <code>load_sqlite.py</code> (builds the DB from committed data), standard library only.</li>
+      <li><strong>Data quality</strong> — a stdlib gate checking row counts, null rates, referential
+        integrity, grain uniqueness, and RPPI month-gap continuity.</li>
+      <li><strong>Power BI</strong> — a model, DAX, and report specification in
+        <code>powerbi/POWER_BI_GUIDE.md</code>.</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <p>Data © Central Statistics Office Ireland and the Residential Tenancies Board, reused under their
+     open-data terms. Built in small daily increments — see the
+     <a href="https://github.com/Niranjan-gowda/ireland-housing-affordability/blob/main/ROADMAP.md">roadmap</a>.
+     Author: Niranjan Chikkegowda.</p>
+</footer>
+
+<script>
+  (function(){
+    var tabs = document.querySelectorAll('.tab');
+    tabs.forEach(function(t){
+      t.addEventListener('click', function(){
+        tabs.forEach(function(x){ x.setAttribute('aria-selected','false'); });
+        t.setAttribute('aria-selected','true');
+        document.querySelectorAll('.panel').forEach(function(p){ p.setAttribute('data-active','false'); });
+        document.getElementById(t.dataset.target).setAttribute('data-active','true');
+      });
+    });
+  })();
+</script>
+</body>
+</html>
